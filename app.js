@@ -1,27 +1,41 @@
 const toggleSpinner = displayStyle => {
     document.getElementById('spinner').style.display = displayStyle;
 }
-
+document.getElementById('error-message1').style.display = 'none'
+document.getElementById('error-message2').style.display = 'none'
 const searchPhone = () => {
     const searchField = document.getElementById('search-input');
     const searchText = searchField.value;
+
     console.log(searchText);
     toggleSpinner('inline-block')
     searchField.value = '';
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-    fetch(url)
-        .then(response => response.json())
-        .then(data => displaySearchResult(data.data))
+    document.getElementById('error-message1').style.display = 'none'
+    if (searchText == '' || searchText == ' ') {
+        document.getElementById('error-message1').style.display = 'block'
+        toggleSpinner('none')
+    }
+    else {
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => displaySearchResult(data.data))
+            .catch(error => displayError(error));
+    }
+}
+
+const displayError = error => {
+    document.getElementById('error-message1').style.display = 'block'
 }
 
 const displaySearchResult = data => {
     console.log(data);
     const searchResult = document.getElementById('display-search');
     searchResult.textContent = '';
+    if (data.length == 0) {
+        document.getElementById('error-message2').style.display = 'block'
+    }
     data.forEach(data => {
-        if (data.length == -1) {
-            document.getElementById('error-message').style.display = 'block'
-        }
         console.log(data);
         const phoneId = data.slug;
         console.log(phoneId)
@@ -35,7 +49,7 @@ const displaySearchResult = data => {
                     <h5>Brand: ${data.brand}</h5>
                 </div>
                 <div class="card-footer bg-white border-top-0 mx-auto">
-                    <button onclick="loadPhoneDetail('${phoneId}')" type="button" class="btn btn-primary">Detail</button>
+                    <button onclick="loadPhoneDetail('${phoneId}')" type="button" class="btn btn-primary">Details</button>
                 </div>
             </div>
         `;
@@ -45,7 +59,6 @@ const displaySearchResult = data => {
 }
 
 const loadPhoneDetail = phoneId => {
-    // const phoneId = data.slug;
     console.log(phoneId)
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
     console.log(url)
@@ -73,12 +86,12 @@ const displayPhoneDetail = phone => {
                     <p class="fw-light">Memory: ${phone.mainFeatures.memory}</p>
                     <p class="fw-light">Storage: ${phone.mainFeatures.storage}</p>
                     <h6>Other Features</h6>
-                    <p class="fw-light">Bluetooth : ${phone.others.Bluetooth ? phone.others.Bluetooth : 'Not available'}</p>
-                    <p class="fw-light">GPS : ${phone.others.GPS ? phone.others.GPS : 'Not available'}</p>
-                    <p class="fw-light">NFC : ${phone.others.NFC ? phone.others.NFC : 'Not available'}</p>
-                    <p class="fw-light">Radio : ${phone.others.Radio ? phone.others.Radio : 'Not available'}</p>
-                    <p class="fw-light">USB : ${phone.others.USB ? phone.others.USB : 'Not available'}</p>
-                    <p class="fw-light">WLAN : ${phone.others.WLAN ? phone.others.WLAN : 'Not available'}</p>
+                    <p class="fw-light">Bluetooth : ${phone.others?.Bluetooth ? phone.others?.Bluetooth : 'Not available'}</p>
+                    <p class="fw-light">GPS : ${phone.others?.GPS ? phone.others?.GPS : 'Not available'}</p>
+                    <p class="fw-light">NFC : ${phone.others?.NFC ? phone.others?.NFC : 'Not available'}</p>
+                    <p class="fw-light">Radio : ${phone.others?.Radio ? phone.others?.Radio : 'Not available'}</p>
+                    <p class="fw-light">USB : ${phone.others?.USB ? phone.others?.USB : 'Not available'}</p>
+                    <p class="fw-light">WLAN : ${phone.others?.WLAN ? phone.others?.WLAN : 'Not available'}</p>
                     <h6>Sensors</h6>
                     <p class="fw-light">${phone.mainFeatures.sensors[0]}, ${phone.mainFeatures.sensors[1]}, ${phone.mainFeatures.sensors[2]}, ${phone.mainFeatures.sensors[3]}, ${phone.mainFeatures.sensors[4]}, ${phone.mainFeatures.sensors[5]}</p>
                 </div>
@@ -88,6 +101,3 @@ const displayPhoneDetail = phone => {
     phoneDetails.appendChild(div);
 }
 
-const loadOthers = () => {
-    console.log()
-}
