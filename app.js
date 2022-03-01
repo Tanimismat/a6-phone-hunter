@@ -48,17 +48,22 @@ const loadPhoneDetail = phoneId => {
 
 const displayPhoneDetail = phone => {
     console.log(phone)
-    /* const phoneDetails = document.getElementById('phone-details')
+    const phoneDetails = document.getElementById('phone-details')
+    phoneDetails.textContent = '';
     const div = document.createElement('div')
-    div.classList.add('card');
+    div.classList.add('col');
     div.innerHTML = `
-        <div class="card w-50 mx-auto">
-                <img src="${data.image}" class="mx-auto card-img-top">
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card'scontent.</p>
+        <div class="w-50 mx-auto d-flex my-5 align-items-center ">
+                <img src="${phone.image}" class="mx-auto card-img-top phone-size2">
+                <div>
+                    <h5>Product Name : ${phone.name} </h5>
+                    <p>Release Date : ${phone.releaseDate}</p>
+                    <h6>Main Features</h6>
+                    <p>Chip Set: ${phone.mainFeatures.chipSet}</p>
+                    <p>Display Size: ${phone.mainFeatures.displaySize}</p>
+                    <p>Memory: ${phone.mainFeatures.memory}</p>
                 </div>
         </div>
     `;
-    phoneDetails.appendChild(div); */
+    phoneDetails.appendChild(div);
 }

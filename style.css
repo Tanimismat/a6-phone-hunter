@@ -2,8 +2,12 @@ body{
     overflow-x: hidden;
 }
 .phone-size{
-    height: 250px;
-    width: 200px;
+    height: 190px;
+    width: 170px;
 
     
+}
+.phone-size2{
+    height: 270px;
+    width: 200px;
 }
