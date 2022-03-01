@@ -3,11 +3,15 @@ body{
 }
 .phone-size{
     height: 190px;
-    width: 170px;
-
-    
+    width: 170px;  
 }
 .phone-size2{
     height: 270px;
     width: 200px;
+}
+
+@media only screen and (max-width:768px) {
+    .media{
+        flex-direction: column;
+    }
 }

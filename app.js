@@ -53,7 +53,7 @@ const displayPhoneDetail = phone => {
     const div = document.createElement('div')
     div.classList.add('col');
     div.innerHTML = `
-        <div class="w-50 mx-auto d-flex my-5 align-items-center ">
+        <div class="w-50 mx-auto d-flex my-5 align-items-center media">
                 <img src="${phone.image}" class="mx-auto card-img-top phone-size2">
                 <div>
                     <h5>Product Name : ${phone.name} </h5>
