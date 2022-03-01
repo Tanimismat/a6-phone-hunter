@@ -24,9 +24,11 @@
                         aria-label="Search Phone" aria-describedby="button-addon2">
 
                     <button onclick="searchPhone()" class="btn btn-outline-primary bg-primary text-white" type="button"
-                        id="search-button">Search</button>
+                        id="search-button"><span id="spinner" class="spinner-border spinner-border-sm" role="status"
+                            aria-hidden="true"></span><span>Search</span></button>
                 </div>
             </div>
+
         </section>
 
         <section id="phone-details">
@@ -35,7 +37,9 @@
 
         <section>
             <div id="display-search" class="row row-cols-1 row-cols-md-3 g-4  ms-5">
+
             </div>
+            <p id="error-message" class="text-danger">Please enter </p>
         </section>
     </main>
 

@@ -1,17 +1,35 @@
 body{
     overflow-x: hidden;
 }
+p{
+    line-height: 1.5em;
+    padding: 0;
+    margin: 0;
+}
+h6{
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
 .phone-size{
     height: 190px;
-    width: 170px;  
+    width: 150px;  
 }
 .phone-size2{
     height: 270px;
     width: 200px;
 }
+#spinner{
+    display: none;
+}
+#error-message{
+    display: none;
+}
 
 @media only screen and (max-width:768px) {
     .media{
         flex-direction: column;
+    }
+    .column{
+        width: 100%;
     }
 }
