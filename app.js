@@ -3,20 +3,23 @@ const toggleSpinner = displayStyle => {
 }
 document.getElementById('error-message1').style.display = 'none'
 document.getElementById('error-message2').style.display = 'none'
+
+// Search
 const searchPhone = () => {
     const searchField = document.getElementById('search-input');
     const searchText = searchField.value;
+    const searchResult = searchText.toLowerCase()
+    console.log(searchResult);
 
-    console.log(searchText);
     toggleSpinner('inline-block')
     searchField.value = '';
     document.getElementById('error-message1').style.display = 'none'
-    if (searchText == '' || searchText == ' ') {
+    if (searchResult == '' || searchResult == ' ') {
         document.getElementById('error-message1').style.display = 'block'
         toggleSpinner('none')
     }
     else {
-        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchResult}`;
         fetch(url)
             .then(response => response.json())
             .then(data => displaySearchResult(data.data))
@@ -28,9 +31,10 @@ const displayError = error => {
     document.getElementById('error-message1').style.display = 'block'
 }
 
+
+// Display
 const displaySearchResult = data => {
     console.log(data);
-
     const searchResult = document.getElementById('display-search');
     searchResult.textContent = '';
     if (data.length == 0) {
@@ -38,9 +42,10 @@ const displaySearchResult = data => {
     }
     const first20 = data.slice(0, 20);
     first20.forEach(data => {
-        console.log(typeof data);
+        // console.log(data);
         const phoneId = data.slug;
-        console.log(phoneId)
+
+        // console.log(phoneId)
 
         const div = document.createElement('div')
         div.classList.add('col');
@@ -52,15 +57,18 @@ const displaySearchResult = data => {
                     <h5 class="text-dark text-opacity-75">Brand: ${data.brand}</h5>
                 </div>
                 <div class="card-footer bg-white border-top-0 mx-auto">
-                    <button onclick="loadPhoneDetail('${phoneId}')" type="button" class="btn btn-primary">Details</button>
+                    <button onclick="loadPhoneDetail('${phoneId}')" type="button" class="btn btn-primary ">Details</button>
                 </div>
             </div>
         `;
         searchResult.appendChild(div)
     });
     toggleSpinner('none')
+    document.getElementById('showMore-button').style.display = 'block'
 }
 
+
+// Loading Details
 const loadPhoneDetail = phoneId => {
     console.log(phoneId)
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
@@ -70,7 +78,7 @@ const loadPhoneDetail = phoneId => {
         .then(data => displayPhoneDetail(data.data))
 }
 
-
+// Displaying Details
 const displayPhoneDetail = phone => {
     console.log(phone)
     const phoneDetails = document.getElementById('phone-details')
@@ -103,4 +111,21 @@ const displayPhoneDetail = phone => {
     `;
     phoneDetails.appendChild(div);
 }
+
+
+// Show More
+const showMoreBtn = document.getElementById('showMore-button');
+showMoreBtn.style.display = 'none'
+showMoreBtn.addEventListener('click', event => {
+    console.log('show more button clicked')
+
+    const searchField = document.getElementById('search-input');
+    const searchText = searchField.value;
+    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+    console.log(url)
+    fetch(url)
+        .then(response => response.json())
+        .then(data => console.log(data))
+
+})
 

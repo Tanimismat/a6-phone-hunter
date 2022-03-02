@@ -23,11 +23,11 @@ h6{
     display: none;
 }
 #showMore-button{
-    display:none ;
     width: 150px !important;
+    margin: 30px auto;
 }
 
-
+/* media query */
 @media only screen and (max-width:768px) {
     .media{
         flex-direction: column;

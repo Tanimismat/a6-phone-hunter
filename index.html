@@ -18,6 +18,7 @@
     <main>
         <section>
             <h2 class="text-center mt-4 text-dark text-opacity-75">PHONE ARENA</h2>
+            <!-- Search area -->
             <div>
                 <div class="input-group mb-3 w-50 mx-auto">
                     <input id="search-input" type="text" class="form-control" placeholder="Search Phone"
@@ -28,16 +29,14 @@
                             aria-hidden="true"></span><span>Search</span></button>
                 </div>
             </div>
-
         </section>
-
+        <!-- displaying details area -->
         <section id="phone-details">
-
         </section>
 
+        <!-- search result showing area -->
         <section>
-            <div id="display-search" class="row row-cols-1 row-cols-md-3 g-3 ms-5">
-                <button id="showMore-button" type="button" class="btn btn-secondary">Show more</button>
+            <div id="display-search" class="search-results row row-cols-1 row-cols-md-3 g-3 ms-5">
             </div>
             <div>
                 <p id="error-message1" class="text-danger text-center fw-bold mt-4">Please write something to display!
@@ -46,7 +45,16 @@
                     search!
                 </p>
             </div>
+            <!-- more search results -->
+            <div>
+                <div id="more-search-result" class="search-results row row-cols-1 row-cols-md-3 g-3 ms-5">
+                </div>
+            </div>
         </section>
+        <!-- show more button     -->
+        <div>
+            <button id="showMore-button" type="button" class="btn btn-secondary">Show more</button>
+        </div>
     </main>
 
     <!-- Bootstrap JS bundle -->
