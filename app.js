@@ -30,15 +30,18 @@ const displayError = error => {
 
 const displaySearchResult = data => {
     console.log(data);
+
     const searchResult = document.getElementById('display-search');
     searchResult.textContent = '';
     if (data.length == 0) {
         document.getElementById('error-message2').style.display = 'block'
     }
-    data.forEach(data => {
-        console.log(data);
+    const first20 = data.slice(0, 20);
+    first20.forEach(data => {
+        console.log(typeof data);
         const phoneId = data.slug;
         console.log(phoneId)
+
         const div = document.createElement('div')
         div.classList.add('col');
         div.innerHTML = `
@@ -46,7 +49,7 @@ const displaySearchResult = data => {
                 <img src="${data.image}" class="card-img-top phone-size mx-auto mt-3" alt="...">
                 <div class="card-body">
                     <h6 class="card-title">Product Name: ${data.phone_name}</h6>
-                    <h5>Brand: ${data.brand}</h5>
+                    <h5 class="text-dark text-opacity-75">Brand: ${data.brand}</h5>
                 </div>
                 <div class="card-footer bg-white border-top-0 mx-auto">
                     <button onclick="loadPhoneDetail('${phoneId}')" type="button" class="btn btn-primary">Details</button>
