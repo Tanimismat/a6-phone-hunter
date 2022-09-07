@@ -1,38 +1,51 @@
-body{
-    margin: 0;
-    overflow-x: hidden;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
-p{
-    line-height: 1.5em;
-    padding: 0;
-    margin: 0;
+body {
+	margin: 0;
+	overflow-x: hidden;
 }
-h6{
-    margin-top: 15px;
-    margin-bottom: 5px;
+.header {
+	height: 100vh;
+	background-image: url("./images/phone\ hunter\ background.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: rgba(0, 0, 0, 0.6);
+	background-blend-mode: overlay;
 }
-.phone-size{
-    height: 190px;
-    width: 150px;  
+p {
+	line-height: 1.5em;
+	padding: 0;
+	margin: 0;
 }
-.phone-size2{
-    height: 270px;
-    width: 200px;
+h6 {
+	margin-top: 15px;
+	margin-bottom: 5px;
 }
-#spinner{
-    display: none;
+.phone-size {
+	height: 190px;
+	width: 150px;
 }
-#showMore-button{
-    width: 150px !important;
-    margin: 30px auto;
+.phone-size2 {
+	height: 270px;
+	width: 200px;
+}
+#spinner {
+	display: none;
+}
+#showMore-button {
+	width: 150px !important;
+	margin: 30px auto;
 }
 
 /* media query */
-@media only screen and (max-width:768px) {
-    .media{
-        flex-direction: column;
-    }
-    .column{
-        width: 100%;
-    }
+@media only screen and (max-width: 768px) {
+	.media {
+		flex-direction: column;
+	}
+	.column {
+		width: 100%;
+	}
 }
